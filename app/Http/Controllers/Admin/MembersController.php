@@ -54,7 +54,7 @@ class MembersController extends Controller
 
         if ($request->ajax()) {
             $query = Member::selectRaw("customers.*,(SUM(CASE WHEN order_points.type = 'D' AND order_points.status = 'onhand' AND order_points.points_id = '1' THEN order_points.amount ELSE 0 END) - SUM(CASE WHEN order_points.type = 'C' AND order_points.status = 'onhand' AND order_points.points_id = '1' THEN order_points.amount ELSE 0 END)) AS amount_balance")
-                ->whereBetween('customers.register', [$from, $to])
+                ->whereBetween('customers.activation_at', [$from, $to])
                 ->leftJoin('order_points', 'order_points.customers_id', '=', 'customers.id')
                 ->where(function ($qry) {
                     $qry->where('customers.type', '=', 'member')

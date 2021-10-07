@@ -93,7 +93,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('withdraw', 'WithdrawController');
     Route::get('withdraw-approved/{id}', 'WithdrawController@approved')->name('withdraw.approved');
     Route::put('withdraw-approvedprocess', 'WithdrawController@approvedprocess')->name('withdraw.approvedprocess');
-
+    Route::post('withdraw-otp', 'WithdrawController@otpApproved')->name('withdraw.otpApproved');
     //test
     Route::get('test', 'OrdersController@test')->name('orders.test');
     Route::get('sms-api', 'OrdersController@smsApi');
